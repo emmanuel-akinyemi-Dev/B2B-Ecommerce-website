@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Marketplace from "./pages/Marketplace";
 import Cart from "./pages/Cart";
 import Auth from "./pages/Auth";
-import NotFound from "./pages/Notfound";
+import NotFound from "./pages/notfound";
 
 const queryClient = new QueryClient();
 
