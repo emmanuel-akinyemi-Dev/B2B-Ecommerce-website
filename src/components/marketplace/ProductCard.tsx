@@ -2,6 +2,7 @@ import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
   id: number;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({
+  id,
   name,
   description,
   price,
@@ -21,6 +23,12 @@ export const ProductCard = ({
   category,
   stock,
 }: ProductCardProps) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({ id, name, price, image });
+  };
+
   return (
     <Card className="overflow-hidden group hover:shadow-elevated transition-all duration-300">
       <div className="relative overflow-hidden">
@@ -38,7 +46,7 @@ export const ProductCard = ({
           <span className="text-3xl font-bold text-primary">${price.toFixed(2)}</span>
           <span className="text-sm text-muted-foreground">{stock} in stock</span>
         </div>
-        <Button className="w-full bg-gradient-primary">
+        <Button className="w-full bg-gradient-primary" onClick={handleAddToCart}>
           <ShoppingCart className="mr-2 h-5 w-5" />
           Add to Cart
         </Button>

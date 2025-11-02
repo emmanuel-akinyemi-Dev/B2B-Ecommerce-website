@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProductGrid } from "@/components/marketplace/ProductGrid";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
 const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const { totalItems } = useCart();
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -22,8 +24,13 @@ const Marketplace = () => {
             </Link>
             <div className="flex items-center gap-4">
               <Link to="/cart">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="relative">
                   <ShoppingCart className="h-5 w-5" />
+                   {totalItems > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                      {totalItems}
+                    </Badge>
+                  )}
                 </Button>
               </Link>
               <Link to="/auth">
